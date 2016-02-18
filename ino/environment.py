@@ -3,7 +3,6 @@
 import sys
 import os.path
 import itertools
-import argparse
 import pickle
 import platform
 import hashlib
@@ -79,7 +78,7 @@ class Environment(dict):
     ]
 
     if platform.system() == 'Darwin':
-        arduino_dist_dir_guesses.insert(0, '/Applications/Arduino.app/Contents/Resources/Java')
+        arduino_dist_dir_guesses.insert(0, '/Applications/Arduino.app/Contents/Java/')
 
     default_board_model = 'uno'
     ino = sys.argv[0]

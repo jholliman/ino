@@ -4,7 +4,6 @@ import re
 import os.path
 import inspect
 import subprocess
-import platform
 import jinja2
 import shlex
 
@@ -13,8 +12,6 @@ from jinja2.runtime import StrictUndefined
 import ino.filters
 
 from ino.commands.base import Command
-from ino.environment import Version
-from ino.filters import colorize
 from ino.utils import SpaceList, list_subdirs
 from ino.exc import Abort
 
@@ -221,7 +218,7 @@ class Build(Command):
         flags = SpaceList()
         for d in libdirs:
             flags.append('-I' + d)
-            flags.extend('-I' + subd for subd in list_subdirs(d, recursive=True, exclude=['examples']))
+            flags.extend('-I' + subd for subd in list_subdirs(d, recursive=True, exclude=['examples', 'src']))
         return flags
 
     def _scan_dependencies(self, dir, lib_dirs, inc_flags):
